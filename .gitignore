@@ -1,0 +1,1958 @@
+$(function() {
+  $('#datepicker').datepicker();
+  });
+$('.date1').hide();
+$('.date2').hide();
+$('.date3').hide();
+$('.date4').hide();
+$('.date5').hide();
+$('.date6').hide();
+$('.date7').hide();
+$('.date8').hide();
+$('.date9').hide();
+$('.date10').hide();
+$('.date11').hide();
+$('.date12').hide();
+$('.date13').hide();
+$('.date14').hide();
+$('.date15').hide();
+$('.date16').hide();
+$('.date17').hide();
+$('.date18').hide();
+$('.calendar_input').hide();
+$('.calendar_output').hide();
+$('#gc').hide();
+$('#type').change(function(){
+  if ($(this).val() === '0'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_input').hide();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+  }
+  else if ($(this).val() === '1'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').show();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(a) {
+      a.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 60);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+      var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '2'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').show();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(b) {
+      b.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth - 30);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '3'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').show();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(c) {
+      c.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth - 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '4'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').show();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(d) {
+      d.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '5'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').show();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(e) {
+      e.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 30);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '6'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').show();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(f) {
+      f.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 10);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+      var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '7'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').show();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(g) {
+      g.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth - 90);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '8'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').show();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(h) {
+      h.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth - 30);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '9'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').show();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(i) {
+      i.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '10'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').show();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(j) {
+      j.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '11'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').show();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(k) {
+      k.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '12'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').show();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(l) {
+      l.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 15);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '13'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').show();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(m) {
+      m.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 7);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '14'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').show();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(n) {
+      n.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 7);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '15'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').show();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(o) {
+      o.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 30);
+     var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '16'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').show();
+    $('.date17').hide();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(p) {
+      p.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 30);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '17'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').show();
+    $('.date18').hide();
+    $('.calendar_input').show();
+    $('input').on('change', function(q) {
+      q.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 14);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+  else if ($(this).val() === '18'){
+    $('#gc').hide();
+    $('li').remove();
+    $('.calendar_output').hide();
+    $('.date1').hide();
+    $('.date2').hide();
+    $('.date3').hide();
+    $('.date4').hide();
+    $('.date5').hide();
+    $('.date6').hide();
+    $('.date7').hide();
+    $('.date8').hide();
+    $('.date9').hide();
+    $('.date10').hide();
+    $('.date11').hide();
+    $('.date12').hide();
+    $('.date13').hide();
+    $('.date14').hide();
+    $('.date15').hide();
+    $('.date16').hide();
+    $('.date17').hide();
+    $('.date18').show();
+    $('.calendar_input').show();
+    $('input').on('change', function(r) {
+      r.preventDefault();
+      var userSelection = $(this).val();
+      var myDate = new Date(userSelection);
+      var dayOfMonth = myDate.getDate();
+      var futureDate = myDate.setDate(dayOfMonth + 30);
+      var deadline = new Date(futureDate);
+      var legalHolidays = [1420092000000, 1421647200000, 1424152800000, 1428037200000, 1432530000000, 1435899600000, 1441602000000, 1447221600000, 1451023200000, 1448517600000, 1448604000000, 1451628000000, 1453096800000, 1455516000000, 1454997600000, 1458882000000, 1464584400000, 1467608400000, 1473051600000, 1477976400000, 1478584800000, 1478844000000, 1479967200000, 1480053600000, 1482732000000];
+      var legalHolidays1 = [1424066400000, 1450936800000, 1451541600000];
+       var futureDateLH = (futureDate + 86400000);
+      var deadlineLH = new Date(futureDateLH);
+      var futureDateLHH = (futureDate + 86400000 + 86400000);
+      var deadlineLHH = new Date(futureDateLHH);
+      var futureDateSun = (futureDate + 86400000);  
+      var deadlineSun = new Date(futureDateSun);
+      var futureDateSat = (futureDate + 86400000 + 86400000);  
+      var deadlineSat = new Date(futureDateSat);
+      if (legalHolidays.indexOf(futureDate) !== -1){
+        if (deadlineLH.getDay() === 6){
+          var futureDateLHSat = futureDateLH + 86400000 + 86400000;
+          var deadlineLHSat = new Date(futureDateLHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (legalHolidays1.indexOf(futureDate) !== -1){
+      if (deadlineLHH.getDay() === 6){
+          var futureDateLHHSat = futureDateLHH + 86400000 + 86400000;
+          var deadlineLHHSat = new Date(futureDateLHHSat);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHHSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineLHH + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 0){
+        if (legalHolidays.indexOf(futureDateSun) !== -1){
+          var futureDateSunLH = futureDateSun + 86400000;
+          var deadlineSunLH = new Date(futureDateSunLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSunLH + '</li>');
+          $('.calendar_output').show();
+        } else {
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSun + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }
+      }
+      else if (deadline.getDay() === 6){
+        if (legalHolidays.indexOf(futureDateSat) !== -1){
+          var futureDateSatLH = futureDateSat + 86400000;
+          var deadlineSatLH = new Date(futureDateSatLH);
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSatLH + '</li>');
+        } else {
+          $('.calendar_output').show();
+          $('li').remove();
+          $('ul').append('<li>' + deadlineSat + '</li>');
+          $('.calendar_output').show();
+          $('#gc').show();
+        }  
+      }
+      else {
+        $('li').remove();
+        $('ul').append('<li>' + deadline + '</li>');
+        $('.calendar_output').show();
+        $('#gc').show();
+      }
+    });
+  }
+});
